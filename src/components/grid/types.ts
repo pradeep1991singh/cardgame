@@ -5,5 +5,4 @@ export interface CardProps {
 }
 
 export interface GridProps {
-  size: number;
 }

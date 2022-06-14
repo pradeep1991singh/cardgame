@@ -19,15 +19,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const Grid: FC<GridProps> = ({size}) => {
+const Grid: FC<GridProps> = () => {
   const dispatch = useDispatch();
   const openCardCount = useSelector(getOpenCardCount);
   const steps = useSelector(getClickCount);
   const list = useSelector(getCards);
-
-  useEffect(() => {
-    dispatch(initCards(size));
-  }, [size, dispatch]);
 
   useEffect(() => {
     if (steps > 0 && openCardCount === list.length) {
