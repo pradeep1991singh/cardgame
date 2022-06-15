@@ -1,60 +1,60 @@
-import React, { FC, memo, useCallback, useEffect, useRef } from "react";
-import { Text, StyleSheet, Animated, Pressable } from "react-native";
-import { useDispatch } from "react-redux";
-import { incrementCardClickCount, validateCard } from "../../store/cardReducer";
-import { FlipCardProps } from "./types";
+import React, {FC, memo, useCallback, useEffect, useRef} from 'react';
+import {Text, StyleSheet, Animated, Pressable} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {incrementCardClickCount, validateCard} from '../../store/cardReducer';
+import {FlipCardProps} from './types';
 
 const styles = StyleSheet.create({
   flipCard: {
     width: 100,
     height: 150,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#1ca2f4",
-    backfaceVisibility: "hidden",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#1ca2f4',
+    backfaceVisibility: 'hidden',
     borderRadius: 5,
     borderWidth: 2,
-    borderColor: "#ffffff",
-    margin: 5
+    borderColor: '#ffffff',
+    margin: 5,
   },
   flipBackCard: {
-    backgroundColor: "#ffffff",
-    position: "absolute",
-    top: 0
+    backgroundColor: '#ffffff',
+    position: 'absolute',
+    top: 0,
   },
   text: {
     lineHeight: 25,
     fontSize: 18,
     marginVertical: 18,
-    textAlign: "center"
+    textAlign: 'center',
   },
   textWhite: {
-    color: "#ffffff"
-  }
+    color: '#ffffff',
+  },
 });
 
-const FlipCard: FC<FlipCardProps> = memo(({ item }) => {
-  const { value, index, isOpen } = item;
+const FlipCard: FC<FlipCardProps> = memo(({item}) => {
+  const {value, index, isOpen} = item;
   const dispatch = useDispatch();
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   let flipValue = 0;
-  animatedValue.addListener(({ value }) => (flipValue = value));
+  animatedValue.addListener(({value: val}) => (flipValue = val));
 
   const frontAnimation = animatedValue.interpolate({
     inputRange: [0, 180],
-    outputRange: ["0deg", "180deg"]
+    outputRange: ['0deg', '180deg'],
   });
   const backAnimation = animatedValue.interpolate({
     inputRange: [0, 180],
-    outputRange: ["180deg", "360deg"]
+    outputRange: ['180deg', '360deg'],
   });
 
   const frontAnimationStyle = {
-    transform: [{ rotateY: frontAnimation }]
+    transform: [{rotateY: frontAnimation}],
   };
   const backAnimationStyle = {
-    transform: [{ rotateY: backAnimation }]
+    transform: [{rotateY: backAnimation}],
   };
 
   const closeCard = useCallback(() => {
@@ -62,7 +62,7 @@ const FlipCard: FC<FlipCardProps> = memo(({ item }) => {
       toValue: 0,
       friction: 8,
       tension: 10,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
   }, [animatedValue]);
 
@@ -71,7 +71,7 @@ const FlipCard: FC<FlipCardProps> = memo(({ item }) => {
       toValue: 180,
       friction: 8,
       tension: 10,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
   }, [animatedValue]);
 
@@ -93,8 +93,8 @@ const FlipCard: FC<FlipCardProps> = memo(({ item }) => {
     } else {
       openCard();
     }
-    dispatch(incrementCardClickCount({ value, index, isOpen }));
-    setTimeout(() => dispatch(validateCard({ value, index, isOpen })), 1000);
+    dispatch(incrementCardClickCount({value, index, isOpen}));
+    setTimeout(() => dispatch(validateCard({value, index, isOpen})), 1000);
   };
 
   return (
@@ -103,8 +103,7 @@ const FlipCard: FC<FlipCardProps> = memo(({ item }) => {
         <Text style={[styles.text, styles.textWhite]}>?</Text>
       </Animated.View>
       <Animated.View
-        style={[backAnimationStyle, styles.flipCard, styles.flipBackCard]}
-      >
+        style={[backAnimationStyle, styles.flipCard, styles.flipBackCard]}>
         <Text style={styles.text}>{value}</Text>
       </Animated.View>
     </Pressable>

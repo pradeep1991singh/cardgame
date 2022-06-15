@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlipCard renders correctly && snapshot 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    style={
+      Object {
+        "alignItems": "center",
+        "backfaceVisibility": "hidden",
+        "backgroundColor": "#1ca2f4",
+        "borderColor": "#ffffff",
+        "borderRadius": 5,
+        "borderWidth": 2,
+        "height": 150,
+        "justifyContent": "center",
+        "margin": 5,
+        "transform": Array [
+          Object {
+            "rotateY": "0deg",
+          },
+        ],
+        "width": 100,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontSize": 18,
+            "lineHeight": 25,
+            "marginVertical": 18,
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#ffffff",
+          },
+        ]
+      }
+    >
+      ?
+    </Text>
+  </View>
+  <View
+    collapsable={false}
+    style={
+      Object {
+        "alignItems": "center",
+        "backfaceVisibility": "hidden",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#ffffff",
+        "borderRadius": 5,
+        "borderWidth": 2,
+        "height": 150,
+        "justifyContent": "center",
+        "margin": 5,
+        "position": "absolute",
+        "top": 0,
+        "transform": Array [
+          Object {
+            "rotateY": "180deg",
+          },
+        ],
+        "width": 100,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 18,
+          "lineHeight": 25,
+          "marginVertical": 18,
+          "textAlign": "center",
+        }
+      }
+    >
+      1
+    </Text>
+  </View>
+</View>
+`;
