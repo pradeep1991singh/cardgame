@@ -7,8 +7,10 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {initCards} from '../../store/cardReducer';
+import {getCardsSize} from '../../store/cardSelector';
 import {InputModalProps} from './types';
 
 const styles = StyleSheet.create({
@@ -18,10 +20,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    padding: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -33,12 +34,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 5,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
   },
   buttonClose: {
     backgroundColor: '#2196F3',
@@ -48,22 +46,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
   input: {
     height: 40,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderRadius: 5,
+    minWidth: 300,
   },
 });
 
 const InputModal: FC<InputModalProps> = () => {
   const dispatch = useDispatch();
+  const gridSize = useSelector(getCardsSize);
   const [modalVisible, setModalVisible] = useState(true);
   const [size, setSize] = useState('');
+
+  if (gridSize) {
+    return null;
+  }
 
   const handleSubmit = () => {
     dispatch(initCards(parseInt(size, 10)));
@@ -83,7 +84,7 @@ const InputModal: FC<InputModalProps> = () => {
           <View style={styles.modalView}>
             <TextInput
               style={styles.input}
-              placeholder="Enter grid size (only even number allowed)"
+              placeholder="Card numbers (please enter even number)"
               keyboardType="numeric"
               value={size}
               onChangeText={setSize}

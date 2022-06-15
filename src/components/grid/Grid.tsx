@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Alert, StyleSheet, ScrollView, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
-import {initCards, resetCards} from '../../store/cardReducer';
+import {resetCards} from '../../store/cardReducer';
 import {
   getCards,
   getClickCount,
