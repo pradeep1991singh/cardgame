@@ -12,5 +12,5 @@
 ## Usage
 
 - Run `cd cardgame && npm install`
-- Run `cd ios && pos install`
+- Run `cd ios && pod install`
 - Run `npm run ios` or `npm run android` to start your application!
