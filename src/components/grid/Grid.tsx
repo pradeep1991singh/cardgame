@@ -27,7 +27,7 @@ const Grid: FC<GridProps> = () => {
 
   useEffect(() => {
     if (steps > 0 && openCardCount === list.length) {
-      Alert.alert('Congratulations', `You win this game by ${steps}`, [
+      Alert.alert('Congratulations', `You win this game by ${steps} steps!`, [
         {text: 'Try another round', onPress: () => dispatch(resetCards())},
       ]);
     }
